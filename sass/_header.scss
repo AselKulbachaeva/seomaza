@@ -1,6 +1,6 @@
-$color: #ff6a40;
-
-
-.header-info{
+@import 'variables';
+@import 'mixin';
+$color:#ff6a40;
+.header-info {
   background-color: $color;
 }

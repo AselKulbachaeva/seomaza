@@ -7,7 +7,7 @@ const del = require('del');
 const clean = () => del(['dist']);
 
 const css = () => {
-  return src('./sass//*.scss')
+  return src('./sass/**/*.scss')
     .pipe(sass({
       includePaths: require('node-normalize-scss').includePaths
     }).on('error', sass.logError))
@@ -15,16 +15,16 @@ const css = () => {
 }
 
 const html = () => {
-  return src('./templates//*.html')
+  return src('./templates/**/*.html')
     .pipe(dest('./dist/'));
 }
 
 const js = () => {
-  return src('./js//*.js')
+  return src('./js/**/*.js')
     .pipe(dest('./dist/js'));
 }
 
-const images = () => src('./images//*').pipe(dest('./dist/images'));
+const images = () => src('./images/**/*').pipe(dest('./dist/images'));
 
 const fonts = () => {
   return src('./fonts.list')
@@ -43,9 +43,9 @@ const fontawesome = () => {
 }
 
 const watchFiles = () => {
-  watch('./sass//*.scss', css);
-  watch('./images//*', images)
-  watch('./templates//*.html', html)
+  watch('./sass/**/*.scss', css);
+  watch('./images/**/*', images)
+  watch('./templates/**/*.html', html)
 }
 
 const build = series(clean, parallel(html, images, fontawesome, fonts, css, js));
